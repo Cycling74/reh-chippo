@@ -1,0 +1,2 @@
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar qc libHopkinsBinaryData.a CMakeFiles/HopkinsBinaryData.dir/juce_binarydata_HopkinsBinaryData/JuceLibraryCode/BinaryData1.cpp.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib libHopkinsBinaryData.a

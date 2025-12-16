@@ -1,0 +1,13 @@
+.DS_Store
+build/
+!/build/.gitkeep
+.vscode
+export/*
+cmake-build-debug/
+cmake-build-release/
+cmake-build-debug/assets
+cmake-build-release/assets
+.idea*
+.idea/
+Builds/
+Installers/
