@@ -20,11 +20,14 @@ public:
     bool isBusesLayoutSupported (const BusesLayout& layouts) const override;
 
     friend class CustomAudioEditor;
+    friend class EditorContainer;
 
 private:
     juce::OwnedArray<RNBO::list> sequences;
     juce::ValueTree              presetTree { "presetTree" };
     juce::ApplicationProperties  appProperties;
+
+    void setupSequencerPresetTree();
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CustomAudioProcessor)
 };

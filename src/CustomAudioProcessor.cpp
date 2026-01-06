@@ -35,6 +35,8 @@ CustomAudioProcessor::CustomAudioProcessor (const nlohmann::json&   patcher_desc
     options.osxLibrarySubFolder = "Application Support";
 
     appProperties.setStorageParameters (options);
+
+    setupSequencerPresetTree();
 }
 
 juce::AudioProcessorEditor* CustomAudioProcessor::createEditor()
@@ -56,6 +58,12 @@ void CustomAudioProcessor::getStateInformation (MemoryBlock& destData)
     presetJSON["presetName"]         = presetTree.getProperty ("CurrentPresetName").toString().toStdString();
     presetJSON["presetFileLocation"] = presetTree.getProperty ("CurrentPresetFileLocation").toString().toStdString();
 
+    for (auto& i : SeqButtons::genIdts)
+    {
+        presetJSON[(sequencerVisIdt.toString() + i.toString()).toStdString()]
+            = presetTree.getChildWithName (sequencerVisIdt).getProperty (i).toString().toStdString();
+    }
+
     MemoryOutputStream stream (destData, false);
     stream.writeString (nlohmann::to_string (presetJSON));
 }
@@ -71,6 +79,16 @@ void CustomAudioProcessor::setStateInformation (const void* data, int sizeInByte
         presetJSON.erase ("CurrentPresetName");
         presetTree.setProperty ("CurrentPresetFileLocation", presetJSON["presetFileLocation"], nullptr);
         presetJSON.erase ("CurrentPresetFileLocation");
+    }
+
+    for (auto& i : SeqButtons::genIdts)
+    {
+        auto property = (sequencerVisIdt.toString() + i.toString()).toStdString();
+        if (presetJSON.contains (property))
+        {
+            presetTree.getChildWithName (sequencerVisIdt).setProperty (i, presetJSON[property], nullptr);
+            presetJSON.erase (property);
+        }
     }
 
     auto rnboPreset = RNBO::convertJSONToPreset (nlohmann::to_string (presetJSON));
@@ -90,4 +108,14 @@ bool CustomAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) c
         return false;
 
     return true;
+}
+
+void CustomAudioProcessor::setupSequencerPresetTree()
+{
+    juce::ValueTree seqTree { sequencerVisIdt };
+
+    for (auto& i : SeqButtons::genIdts)
+        seqTree.setProperty (i, false, nullptr);
+
+    presetTree.addChild (seqTree, -1, nullptr);
 }

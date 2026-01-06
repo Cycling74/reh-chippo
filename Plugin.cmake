@@ -17,7 +17,7 @@ endif()
 # Check the readme at `docs/CMake API.md` in the JUCE repo for the full list.
 
 juce_add_plugin(RNBOAudioPlugin
-        VERSION 1.0.0                        # Set this if the plugin version is different to the project version
+#        VERSION 1.0.2                        # Set this if the plugin version is different to the project version
         # ICON_BIG ...                       # ICON_* arguments specify a path to an image file to use as an icon for the Standalone
         # ICON_SMALL ...
         BUNDLE_ID "com.EmilyHopkins.Chippo"
@@ -59,6 +59,7 @@ target_sources(RNBOAudioPlugin PRIVATE
   src/Components/SequencerComponent.cpp
   src/Components/SliderMasked.cpp
   src/Components/SliderRotary.cpp
+  src/Components/EditorContainer/EditorContainer.cpp
   src/Components/PresetBar/PresetBar.cpp
   src/Components/LookAndFeel/ChippoLookAndFeel.cpp
   ${CPP_SOURCES}

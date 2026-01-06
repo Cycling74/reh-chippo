@@ -13,7 +13,7 @@
 
 struct SequencerComponent : public Component, public ChangeBroadcaster
 {
-    SequencerComponent();
+    SequencerComponent (const String& name);
     ~SequencerComponent() override;
 
     void paint (Graphics& g) override;
@@ -31,6 +31,7 @@ private:
     int                             numSteps { 8 };
     std::unique_ptr<Component>      stepBox;
     bool                            blockSequenceEditOutput { false };
+    Label                           seqName;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequencerComponent)
 };

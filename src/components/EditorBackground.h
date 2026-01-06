@@ -84,20 +84,6 @@ struct EditorBackground : public Component
         g.setFont (Font (32.0f).withExtraKerningFactor (0.05f));
         g.setColour (Colours::black);
         g.drawText ("SEQUENCER", Rectangle<int> { 21, 810, 175, 30 }, Justification::topLeft);
-
-        g.setFont (Font (15.0f));
-        auto yPos      = getHeight() - 135;
-        auto labelRect = Rectangle<int> (21, yPos, 30, 25).withRightX (35);
-        auto tr        = 25;
-        g.drawText ("MEL", labelRect, Justification::right);
-        labelRect = labelRect.translated (0, tr);
-        g.drawText ("BASS", labelRect, Justification::right);
-        labelRect = labelRect.translated (0, tr);
-        g.drawText ("HAT", labelRect, Justification::right);
-        labelRect = labelRect.translated (0, tr);
-        g.drawText ("SNR", labelRect, Justification::right);
-        labelRect = labelRect.translated (0, tr);
-        g.drawText ("KICK", labelRect, Justification::right);
     }
 
 private:

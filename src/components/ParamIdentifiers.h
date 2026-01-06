@@ -62,6 +62,8 @@ inline static const std::vector<Identifier> allIdts { run, generateMelodyAlways 
 
 } // namespace Toggles
 
+
+NLT_IDT sequencerVisIdt { "SequencerVisibility" };
 namespace SeqButtons
 {
 using namespace juce;
@@ -79,7 +81,7 @@ NLT_IDT clearHat { "clearHat" };
 
 inline static const std::vector<Identifier> allIdts { melody,      bass,      kick,      snare,      hat,
                                                       clearMelody, clearBass, clearKick, clearSnare, clearHat };
-inline static const std::vector<Identifier> genIdts { melody, bass, kick, snare, hat };
+inline static const std::vector<Identifier> genIdts { melody, bass, hat, snare, kick };
 inline static const std::vector<Identifier> clearIdts { clearMelody, clearBass, clearKick, clearSnare, clearHat };
 
 } // namespace SeqButtons

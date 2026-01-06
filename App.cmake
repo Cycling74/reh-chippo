@@ -42,6 +42,7 @@ target_sources(RNBOApp
   src/Components/SliderRotary.cpp
   src/Components/PresetBar/PresetBar.cpp
   src/Components/LookAndFeel/ChippoLookAndFeel.cpp
+  src/Components/EditorContainer/EditorContainer.cpp
 
   ${RNBO_CLASS_FILE}
 

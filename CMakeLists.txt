@@ -5,7 +5,7 @@ set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64" CACHE STRING "")
 
 set(CMAKE_BUILD_TYPE Debug CACHE STRING "Choose the type of build, options are: Debug Release")
 
-project(Chippo VERSION 1.0.0)
+project(Chippo VERSION 1.0.3)
 
 set(CMAKE_CXX_STANDARD 14) #JUCE requires 14
 set(CMAKE_CXX_STANDARD_REQUIRED ON)

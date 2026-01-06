@@ -10,7 +10,8 @@ struct StepBox : public Component
     }
 };
 
-SequencerComponent::SequencerComponent()
+SequencerComponent::SequencerComponent(const String& name)
+    :   seqName (name, name)
 {
     setLookAndFeel (&look);
     toggleValues.resize (64, false);
@@ -35,6 +36,11 @@ SequencerComponent::SequencerComponent()
 
     stepBox = std::make_unique<StepBox>();
     addAndMakeVisible (*stepBox);
+
+    seqName.setColour (Label::textColourId, Colours::black);
+    seqName.setJustificationType (Justification::right);
+    seqName.setFont (15.0f);
+    addAndMakeVisible (seqName);
 }
 
 SequencerComponent::~SequencerComponent()
@@ -51,11 +57,13 @@ void SequencerComponent::paint (Graphics& g)
 void SequencerComponent::resized()
 {
     auto bounds       = getLocalBounds().toFloat();
+    seqName.setBounds (bounds.removeFromLeft (35).toNearestInt().withWidth (46));
+
     auto toggleWidth  = bounds.getWidth() / (float) jmax (numSteps, 1);
     auto toggleHeight = bounds.getHeight();
     for (auto i = 0; i < numSteps; ++i)
     {
-        auto toggleBounds = Rectangle<float> ((float) i * toggleWidth, 0, toggleWidth, toggleHeight);
+        auto toggleBounds = Rectangle<float> ((float) i * toggleWidth + bounds.getX(), 0, toggleWidth, toggleHeight);
         toggles[i]->setBounds (toggleBounds.toNearestInt().reduced (3, 1));
     }
 }
@@ -104,7 +112,7 @@ std::vector<bool> SequencerComponent::getCurrentSequence() const
 
 void SequencersContainer::add (RNBO::MessageTag tag)
 {
-    auto s            = sequencers.add (std::make_unique<SequencerComponent>());
+    auto s            = sequencers.add (std::make_unique<SequencerComponent>(""));
     sequencerMap[tag] = s;
 }
 
