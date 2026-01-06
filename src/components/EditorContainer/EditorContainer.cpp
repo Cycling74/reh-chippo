@@ -61,7 +61,7 @@ void EditorContainer::setScale (float newScale)
     auto props = appProperties.getCommonSettings (true);
     props->setValue ("scale", scale);
     setTransform (AffineTransform::scale (scale));
-    sendSynchronousChangeMessage();
+    sendChangeMessage();
 }
 
 EditorContainer::~EditorContainer()

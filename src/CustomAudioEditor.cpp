@@ -14,12 +14,11 @@ CustomAudioEditor::CustomAudioEditor (CustomAudioProcessor* const p, RNBO::CoreO
     changeListenerActions.add (editorContainer,
                                [this] (auto* broadcaster)
                                {
-                                   DBG("hellooo " << editorContainer.getScale());
-
+                                   if (auto* parent = getParentComponent())
+                                       parent->setSize (editorContainer.getWidth() * editorContainer.getScale(),
+                                                        editorContainer.getHeight() * editorContainer.getScale());
                                    setSize (editorContainer.getWidth() * editorContainer.getScale(),
                                             editorContainer.getHeight() * editorContainer.getScale());
-                                   if (auto* parent = getParentComponent())
-                                       parent->setSize (getWidth(), getHeight());
                                });
     setSize (editorContainer.getWidth() * editorContainer.getScale(),
              editorContainer.getHeight() * editorContainer.getScale());
